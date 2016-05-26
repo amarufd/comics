@@ -1,0 +1,7 @@
+{
+    "name": "MarvelApp",
+    "description": "Marvel Comics Ionic Test",
+    "repository": "https://github.com/amarufd/comics",
+    "logo": "resources/icon.pnge,
+    "keywords": ["ionic", "comics", "marvel"]
+}
