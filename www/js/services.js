@@ -1,6 +1,8 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
+.factory('Chats', function($http,$q) {
+         
+         var parametros='?ts=1&apikey=f9d383ce301c35dc2ae0e1fdc700bf83&hash=cab7ae1e129b27defde77584d98b369a';
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -32,19 +34,32 @@ angular.module('starter.services', [])
   }];
 
   return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
-    }
+         getComics: function() {
+         var deferred = $q.defer();
+         $http({
+               method : 'GET',
+               url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
+               cache : false
+               }).success(function(data) {
+                          deferred.resolve(data);
+               }).error(function() {
+                          deferred.reject('problemas con los datos');
+               });
+         return deferred.promise;
+         },
+         all: function() {
+            return chats;
+         },
+         remove: function(chat) {
+            chats.splice(chats.indexOf(chat), 1);
+         },
+         get: function(chatId) {
+            for (var i = 0; i < chats.length; i++) {
+                if (chats[i].id === parseInt(chatId)) {
+                    return chats[i];
+                }
+            }
+            return null;
+         }
   };
 });
