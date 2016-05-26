@@ -2,7 +2,11 @@ angular.module('starter.services', [])
 
 .factory('Chats', function($http,$q) {
          
-         var parametros='?ts=1&apikey=f9d383ce301c35dc2ae0e1fdc700bf83&hash=cab7ae1e129b27defde77584d98b369a';
+   var parametros='?ts=1&apikey=f9d383ce301c35dc2ae0e1fdc700bf83&hash=cab7ae1e129b27defde77584d98b369a';
+         
+         var pubkey    = 'f9d383ce301c35dc2ae0e1fdc700bf83'
+         , privkey   = 'ff9855f6e7879270a8ee843303daf6ff115f5cf1'
+         , internals = {};
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
