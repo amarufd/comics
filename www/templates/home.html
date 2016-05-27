@@ -1,7 +1,7 @@
-<ion-view view-title="Chats">
+<ion-view view-title="Comics">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/comics/detail/{{chat.id}}" ng-click="getTheComics(chat.id)">
         <img ng-src="{{chat.images[0].path}}.jpg">
         <h2>{{chat.title}}</h2>
         <p>{{chat.lastText}}</p>

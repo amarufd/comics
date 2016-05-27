@@ -1,8 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope,Chats) {
+.controller('DashCtrl', function($scope,apiMV) {
             
-            Chats.getComics().then(function(d){
+            apiMV.getComics().then(function(d){
                                    console.log(d);
                                    },function(e){
                                    $scope.alert = e;})
@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
             
             })
 
-.controller('HomeCtrl', function($scope, Chats) {
+.controller('HomeCtrl', function($scope, apiMV, $rootScope) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -18,20 +18,38 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-            Chats.getComics().then(function(d){
+            apiMV.getComics().then(function(d){
                                    console.log(d.data.results);
                                    $scope.chats = d.data.results;
                                    },function(e){
                                    $scope.alert = e;})
+            
+            $scope.getTheComics=function(id){
+                apiMV.getTheComics(id).then(function(d){
+                      console.log(d.data.results);
+                      $rootScope.chat = d.data.results[0];
+                      },function(e){
+                      $scope.alert = e;})
+            }
 
-  //$scope.chats = Chats.all();
+  /*$scope.chats = Chats.all();
   $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+    apiMV.remove(chat);
+  };*/
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('ChatDetailCtrl', function($scope, $stateParams, apiMV, $timeout, $rootScope) {
+            
+            $scope.chat = $rootScope.chat;
+            console.log($scope.chat);
+            
+                     apiMV.getTheComics($stateParams.comicsId).then(function(d){
+                                        console.log(d.data.results);
+                                                                    $rootScope.chat = d.data.results[0];
+                                },function(e){
+                                        $scope.alert = e;})
+                     $timeout(function(){console.log($rootScope.chat.title)},500)
+            
             
             
 })

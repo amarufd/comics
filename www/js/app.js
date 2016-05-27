@@ -25,29 +25,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
         
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
-
- // setup an abstract state for the tabs directive
+        $stateProvider
         .state('comics', {
                url: '/comics',
                abstract: true,
                templateUrl: 'templates/comics.html'
                })
-  // Each tab has its own nav history stack:
-
-  /*.state('comics.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })*/
 
   .state('comics.home', {
       url: '/home',
@@ -58,8 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    .state('comics.chat-detail', {
-      url: '/chats/:chatId',
+    .state('comics.detail', {
+      url: '/detail/:comicsId',
       views: {
         'tab-chats': {
           templateUrl: 'templates/chat-detail.html',
