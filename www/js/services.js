@@ -2,7 +2,7 @@
 
   .factory('apiMV', function($http,$q) {
 
-   var parametros='?ts=1&apikey=f9d383ce301c35dc2ae0e1fdc700bf83&hash=cab7ae1e129b27defde77584d98b369a';
+   var parametros='?ts=1&apikey=f9d383ce301c35dc2ae0e1fdc700bf83&hash=cab7ae1e129b27defde77584d98b369a&limit=30';
 
    /*var pubkey    = 'f9d383ce301c35dc2ae0e1fdc700bf83'
    , privkey   = 'ff9855f6e7879270a8ee843303daf6ff115f5cf1'
@@ -13,7 +13,8 @@
   
   return {
           getComics: getComics,
-          getTheComics: getTheComics
+          getTheComics: getTheComics,
+          getCharacters: getCharacters
         }
 
         function getTheComics(comicsId) {
@@ -37,6 +38,21 @@
      $http({
        method : 'GET',
                url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
+               //url : 'json/comics.json',
+               cache : false
+             }).success(function(data) {
+              deferred.resolve(data);
+            }).error(function() {
+              deferred.reject('problemas con los datos');
+            });
+            return deferred.promise;
+          }
+
+          function getCharacters(id) {
+     var deferred = $q.defer();
+     $http({
+       method : 'GET',
+               url : 'http://gateway.marvel.com/v1/public/comics/'+id+'/characters'+parametros,
                //url : 'json/comics.json',
                cache : false
              }).success(function(data) {

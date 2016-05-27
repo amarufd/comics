@@ -7,8 +7,25 @@
 <ion-view view-title="{{comic.title}}">
   <ion-content class="padding">
     <img ng-src="{{comic.images[0].path}}.jpg" style="height: 50%; width: 50%;">
-    <p>
+    <h2>
       {{comic.title}}
-    </p>
+    </h2>
+    <h4>
+      {{comic.description}}
+    <br /><br />
+      Capitulo Nº: {{comic.issueNumber}}
+    <br /><br />
+      Numero de paginas: {{comic.pageCount}}
+    <br /><br />
+      Personajes:
+    </h4>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="data in characters " type="item-text-wrap">
+        <img ng-src="{{data.images[0].path}}.jpg">
+        <h2>{{data.title}}</h2>
+        <p ng-show="data.prices[0].price != 0">Precio: ${{data.prices[0].price}}</p> <p ng-hide="data.prices[0].price != 0">Sin Precio Disponible</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

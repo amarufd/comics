@@ -25,4 +25,11 @@ angular.module('starter.controllers', [])
   },function(e){
     $scope.alert = e;})
 
+  
+  apiMV.getCharacters($stateParams.comicsId).then(function(d){
+    $scope.characters = d.data.results;
+    console.log($scope.characters);
+  },function(e){
+    $scope.alert = e;})
+
 });
