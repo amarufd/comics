@@ -1,1 +1,6 @@
 /* Empty. Add your own CSS if you like */
+
+.item-avatar .item-content > img:first-child {
+	    border-radius:0px;
+	    max-height: 100%;
+}
