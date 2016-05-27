@@ -16,7 +16,8 @@ angular.module('starter.services', [])
          var deferred = $q.defer();
          $http({
                method : 'GET',
-               url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
+               //url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
+               url : 'json/comics.json',
                cache : false
                }).success(function(data) {
                           deferred.resolve(data);
@@ -25,19 +26,7 @@ angular.module('starter.services', [])
                });
          return deferred.promise;
          },
-         getTheComics: function(comicsId) {
-         var deferred = $q.defer();
-         $http({
-               method : 'GET',
-               url : 'http://gateway.marvel.com/v1/public/comics/'+comicsId+parametros,
-               cache : false
-               }).success(function(data) {
-                          deferred.resolve(data);
-                          }).error(function() {
-                                   deferred.reject('problemas con los datos');
-                                   });
-         return deferred.promise;
-         },
+         getTheComics: getTheComics,
          all: function() {
             return chats;
          },
@@ -52,5 +41,21 @@ angular.module('starter.services', [])
             }
             return null;
          }
-  };
+  }
+         
+         function getTheComics(comicsId) {
+         var deferred = $q.defer();
+         var promise = deferred.promise;
+         $http({
+               method : 'GET',
+               //url : 'http://gateway.marvel.com/v1/public/comics/'+comicsId+parametros,
+               url : 'json/42882.json',
+               cache : false
+               }).success(function(data) {
+                          deferred.resolve(data);
+                          }).error(function() {
+                                   deferred.reject('problemas con los datos');
+                                   });
+         return promise;
+         }
 });

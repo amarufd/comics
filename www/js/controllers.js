@@ -26,15 +26,14 @@ angular.module('starter.controllers', [])
             
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, apiMV, $timeout) {
+.controller('ChatDetailCtrl', function($scope, $stateParams, apiMV, $rootScope) {
+            
+            
             
             apiMV.getTheComics($stateParams.comicsId).then(function(d){
-                                        $scope.chat = d.data.results[0];
+                                        $rootScope.chat = d.data.results[0];
                                 },function(e){
                                         $scope.alert = e;})
-            
-            console.log($scope.chat);
-            $timeout(function(){console.log($scope.chat)},500)
             
             
             
