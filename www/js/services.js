@@ -12,22 +12,8 @@
   
   
   return {
-   getComics: function() {
-     var deferred = $q.defer();
-     $http({
-       method : 'GET',
-               url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
-               //url : 'json/comics.json',
-               cache : false
-             }).success(function(data) {
-              deferred.resolve(data);
-            }).error(function() {
-              deferred.reject('problemas con los datos');
-            });
-            return deferred.promise;
-          },
-          getTheComics: getTheComics,
-          searchComics: searchComics
+          getComics: getComics,
+          getTheComics: getTheComics
         }
 
         function getTheComics(comicsId) {
@@ -46,22 +32,22 @@
             return promise;
           }
 
-          function searchComics() {
-         
-         var deferred = $q.defer();
-         var promise = deferred.promise;
-         $http({
-           method : 'GET',
-               url : 'http://gateway.marvel.com/v1/public/comics'+parametros,//+'&limit=30',
+          function getComics() {
+     var deferred = $q.defer();
+     $http({
+       method : 'GET',
+               url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
                //url : 'json/comics.json',
                cache : false
              }).success(function(data) {
               deferred.resolve(data);
             }).error(function() {
-             deferred.reject('problemas con los datos');
-           });
-            return promise;
+              deferred.reject('problemas con los datos');
+            });
+            return deferred.promise;
           }
+
+
 
 
         });

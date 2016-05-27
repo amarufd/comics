@@ -35,7 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('comics.home', {
     url: '/home',
     views: {
-      'tab-chats': {
+      'tab-comics': {
         templateUrl: 'templates/home.html',
         controller: 'HomeCtrl'
       }
@@ -44,18 +44,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('comics.detail', {
     url: '/detail/:comicsId',
     views: {
-      'tab-chats': {
+      'tab-comics': {
         templateUrl: 'templates/detail.html',
         controller: 'ChatDetailCtrl'
-      }
-    }
-  })
-  .state('comics.search', {
-    url: '/search',
-    views: {
-      'tab-search': {
-        templateUrl: 'templates/search.html',
-        controller: 'buscadorCtrl'
       }
     }
   });
