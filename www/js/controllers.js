@@ -19,7 +19,6 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
             apiMV.getComics().then(function(d){
-                                   console.log(d.data.results);
                                    $scope.chats = d.data.results;
                                    },function(e){
                                    $scope.alert = e;})
