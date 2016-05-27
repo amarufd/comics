@@ -24,42 +24,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-        
-        $stateProvider
-        .state('comics', {
-               url: '/comics',
-               abstract: true,
-               templateUrl: 'templates/comics.html'
-               })
+
+  $stateProvider
+  .state('comics', {
+   url: '/comics',
+   abstract: true,
+   templateUrl: 'templates/comics.html'
+ })
 
   .state('comics.home', {
-      url: '/home',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/home.html',
-          controller: 'HomeCtrl'
-        }
-      }
-    })
-    .state('comics.detail', {
-      url: '/detail/:comicsId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('comics.account', {
-    url: '/account',
+    url: '/home',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-chats': {
+        templateUrl: 'templates/home.html',
+        controller: 'HomeCtrl'
       }
     }
-  });
+  })
+  .state('comics.detail', {
+    url: '/detail/:comicsId',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/chat-detail.html',
+        controller: 'ChatDetailCtrl'
+      }
+    }
+  })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/comics/home');

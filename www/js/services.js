@@ -1,61 +1,76 @@
-angular.module('starter.services', [])
+  angular.module('starter.services', [])
 
-.factory('apiMV', function($http,$q) {
-         
+  .factory('apiMV', function($http,$q) {
+
    var parametros='?ts=1&apikey=f9d383ce301c35dc2ae0e1fdc700bf83&hash=cab7ae1e129b27defde77584d98b369a';
-         
-         var pubkey    = 'f9d383ce301c35dc2ae0e1fdc700bf83'
-         , privkey   = 'ff9855f6e7879270a8ee843303daf6ff115f5cf1'
-         , internals = {};
+
+   var pubkey    = 'f9d383ce301c35dc2ae0e1fdc700bf83'
+   , privkey   = 'ff9855f6e7879270a8ee843303daf6ff115f5cf1'
+   , internals = {};
   // Might use a resource here that returns a JSON array
 
   
   
   return {
-         getComics: function() {
-         var deferred = $q.defer();
-         $http({
-               method : 'GET',
-               //url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
-               url : 'json/comics.json',
+   getComics: function() {
+     var deferred = $q.defer();
+     $http({
+       method : 'GET',
+               url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
+               //url : 'json/comics.json',
                cache : false
-               }).success(function(data) {
-                          deferred.resolve(data);
-               }).error(function() {
-                          deferred.reject('problemas con los datos');
-               });
-         return deferred.promise;
-         },
-         getTheComics: getTheComics,
-         all: function() {
-            return chats;
-         },
-         remove: function(chat) {
-            chats.splice(chats.indexOf(chat), 1);
-         },
-         get: function(chatId) {
-            for (var i = 0; i < chats.length; i++) {
-                if (chats[i].id === parseInt(chatId)) {
-                    return chats[i];
-                }
-            }
-            return null;
-         }
-  }
-         
-         function getTheComics(comicsId) {
+             }).success(function(data) {
+              deferred.resolve(data);
+            }).error(function() {
+              deferred.reject('problemas con los datos');
+            });
+            return deferred.promise;
+          },
+          getTheComics: getTheComics,
+          searchComics: searchComics
+        }
+
+        function getTheComics(comicsId) {
          var deferred = $q.defer();
          var promise = deferred.promise;
          $http({
-               method : 'GET',
-               //url : 'http://gateway.marvel.com/v1/public/comics/'+comicsId+parametros,
-               url : 'json/42882.json',
+           method : 'GET',
+               url : 'http://gateway.marvel.com/v1/public/comics/'+comicsId+parametros,
+               //url : 'json/42882.json',
                cache : false
-               }).success(function(data) {
-                          deferred.resolve(data);
-                          }).error(function() {
-                                   deferred.reject('problemas con los datos');
-                                   });
-         return promise;
-         }
-});
+             }).success(function(data) {
+              deferred.resolve(data);
+            }).error(function() {
+             deferred.reject('problemas con los datos');
+           });
+            return promise;
+          }
+
+          function searchComics(search) {
+         var busqueda = [];
+         var deferred = $q.defer();
+         var promise = deferred.promise;
+         $http({
+           method : 'GET',
+               url : 'http://gateway.marvel.com/v1/public/comics/'+comicsId+parametros,
+               //url : 'json/comics.json',
+               cache : false
+             }).success(function(data) {
+              angular.forEach(data.data.results, function(value, key){
+                var str = value.title;
+                var res = str.split(search);
+                console.log(res.length);
+                if(res.length>1){
+                  busqueda.push({title: value.title,id: value.id});
+                }
+              });
+              console.log(busqueda);
+              deferred.resolve(busqueda);
+            }).error(function() {
+             deferred.reject('problemas con los datos');
+           });
+            return promise;
+          }
+
+
+        });
