@@ -45,11 +45,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/detail/:comicsId',
     views: {
       'tab-chats': {
-        templateUrl: 'templates/chat-detail.html',
+        templateUrl: 'templates/detail.html',
         controller: 'ChatDetailCtrl'
       }
     }
   })
+  .state('comics.search', {
+    url: '/search',
+    views: {
+      'tab-search': {
+        templateUrl: 'templates/search.html',
+        controller: 'buscadorCtrl'
+      }
+    }
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/comics/home');

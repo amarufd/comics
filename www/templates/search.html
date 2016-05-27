@@ -1,7 +1,7 @@
-<ion-view view-title="Comics">
+<ion-view view-title="Search">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="data in chats" type="item-text-wrap" href="#/comics/detail/{{data.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="data in searchComics" type="item-text-wrap" href="#/comics/detail/{{data.id}}">
         <img ng-src="{{data.images[0].path}}.jpg">
         <h2>{{data.title}}</h2>
         <p>{{data.lastText}}</p>
