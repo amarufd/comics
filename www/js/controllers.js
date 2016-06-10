@@ -1,20 +1,21 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope,apiMV) {
 
-  apiMV.getComics().then(function(d){
-   console.log(d);
- },function(e){
-   $scope.alert = e;})
-
-})
 
 .controller('HomeCtrl', function($scope, apiMV) {
+  
   apiMV.getComics().then(function(d){
     $scope.comics = d.data.results;
     //console.log($scope.chats);
   },function(e){
    $scope.alert = e;})
+
+  /*apiMV.getEmolEconomia().then(function(d){
+    console.log(d);
+  },function(e){
+    $scope.alert = e;})*/
+
+
 
 })
 
