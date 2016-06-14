@@ -14,7 +14,8 @@
   return {
           getComics: getComics,
           getTheComics: getTheComics,
-          getCharacters: getCharacters
+          getCharacters: getCharacters,
+          getEmolEconomia: getEmolEconomia
         }
 
         function getTheComics(comicsId) {
@@ -22,8 +23,8 @@
          var promise = deferred.promise;
          $http({
            method : 'GET',
-               url : 'http://gateway.marvel.com/v1/public/comics/'+comicsId+parametros,
-               //url : 'json/42882.json',
+               //url : 'http://gateway.marvel.com/v1/public/comics/'+comicsId+parametros,
+               url : 'json/42882.json',
                cache : false
              }).success(function(data) {
               deferred.resolve(data);
@@ -37,8 +38,8 @@
              var deferred = $q.defer();
              $http({
                method : 'GET',
-               url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
-               //url : 'json/comics.json',
+               //url : 'http://gateway.marvel.com/v1/public/comics'+parametros,
+               url : 'json/comics.json',
                cache : false
              }).success(function(data) {
               deferred.resolve(data);
@@ -53,7 +54,7 @@
              $http({
                method : 'GET',
                //url : 'http://www.emol.com/economia',
-               url : 'json/comics.json',
+               url : 'json/tmp',
                cache : false
              }).success(function(data) {
               deferred.resolve(data);
@@ -67,8 +68,8 @@
      var deferred = $q.defer();
      $http({
        method : 'GET',
-               url : 'http://gateway.marvel.com/v1/public/comics/'+id+'/characters'+parametros,
-               //url : 'json/comics.json',
+               //url : 'http://gateway.marvel.com/v1/public/comics/'+id+'/characters'+parametros,
+               url : 'json/comics.json',
                cache : false
              }).success(function(data) {
               deferred.resolve(data);
